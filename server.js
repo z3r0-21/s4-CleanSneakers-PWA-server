@@ -1,32 +1,22 @@
-const express = require('express');
-const cors = require('cors');
-const app = express();
-
 app.use(express.json({limit: '50mb'}));
 
-//const PORT = process.env.PORT || 5000;
+var express = require('express')
+var cors = require('cors')
+var app = express()
 
-// app.listen(PORT, () => {
-//     console.log("Listening on " + PORT)
-// })
+var corsOptions = {
+  origin: 'http://example.com',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
 
-app.get("/test", (req, res) =>{
-    console.log("Rooot")
-    res.send("yooo!")
-})
+
 
 // const corsOptions ={
 //     origin:'http://localhost:3000', 
 //     credentials:true,            //access-control-allow-credentials:true
 //     optionSuccessStatus:200
 // }
-// app.use(cors(corsOptions));
-
-let allowedOrigins = ["http://localhost:3000", "https://i454903.hera.fhict.nl'"]
-let origin = req.headers.origin;
-if (allowedOrigins.includes(origin)) {
-    res.header("Access-Control-Allow-Origin", origin);
-}
+// app.use(cors(corsOptions));}
 
 const vision = require('@google-cloud/vision');
 
@@ -65,11 +55,16 @@ async function searchForProduct(res, image) {
     res.send(results)
     }
 
-app.post('/api/searchImages', (req, res) => {
+    
+
+app.post('/api/searchImages', cors(corsOptions), (req, res) => {
     searchForProduct(res, req.body.base64);
 });
 
-
+app.get("/test", cors(corsOptions), (req, res) =>{
+    console.log("Rooot")
+    res.send("yooo!")
+})
 
 //PORT ENVIRONMENT VARIABLE
 const port = process.env.PORT || 8080;
