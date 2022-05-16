@@ -1,12 +1,12 @@
-var express = require('express')
-var cors = require('cors')
-var app = express()
+var express = require('express');
+var app = express();
 app.use(express.json({limit: '50mb'}));
 
-var corsOptions = {
-  origin: 'https://i454903.hera.fhict.nl',
-  optionsSuccessStatus: 200
-}
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 
 
@@ -54,16 +54,23 @@ async function searchForProduct(res, image) {
     res.send(results)
     }
 
-    
 
-app.post('/api/searchImages', cors(corsOptions), (req, res) => {
+app.post('/api/searchImages', function (req, res, next) {
     searchForProduct(res, req.body.base64);
 });
 
-app.get("/test", cors(corsOptions), (req, res) =>{
-    console.log("Rooot")
+app.post('/test', function (req, res, next) {
     res.send("yooo!")
-})
+});
+
+// app.post('/api/searchImages', cors(corsOptions), (req, res) => {
+//     searchForProduct(res, req.body.base64);
+// });
+
+// app.get("/test", cors(corsOptions), (req, res) =>{
+//     console.log("Rooot")
+//     res.send("yooo!")
+// })
 
 //PORT ENVIRONMENT VARIABLE
 const port = process.env.PORT || 8080;
