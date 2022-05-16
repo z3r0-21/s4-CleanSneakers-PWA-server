@@ -5,8 +5,8 @@ var cors = require('cors')
 var app = express()
 
 var corsOptions = {
-  origin: 'http://example.com',
-  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+  origin: 'https://i454903.hera.fhict.nl',
+  optionsSuccessStatus: 200
 }
 
 
