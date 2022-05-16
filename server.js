@@ -15,13 +15,19 @@ app.get("/test", (req, res) =>{
     res.send("yooo!")
 })
 
-const corsOptions ={
-    origin:'http://localhost:3000', 
-    credentials:true,            //access-control-allow-credentials:true
-    optionSuccessStatus:200
+// const corsOptions ={
+//     origin:'http://localhost:3000', 
+//     credentials:true,            //access-control-allow-credentials:true
+//     optionSuccessStatus:200
+// }
+// app.use(cors(corsOptions));
+
+let allowedOrigins = ["http://localhost:3000", "https://i454903.hera.fhict.nl'"]
+let origin = req.headers.origin;
+if (allowedOrigins.includes(origin)) {
+    res.header("Access-Control-Allow-Origin", origin);
 }
-app.use(cors(corsOptions));
-//
+
 const vision = require('@google-cloud/vision');
 
 const productSearchClient = new vision.ProductSearchClient({keyFilename: "./key.json"});
