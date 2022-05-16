@@ -4,6 +4,17 @@ const app = express();
 
 app.use(express.json({limit: '50mb'}));
 
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+    console.log("Listening on " + PORT)
+})
+
+app.get("/", (res, req) =>{
+    console.log("Rooot")
+    res.send("ROOT!")
+})
+
 const corsOptions ={
     origin:'http://localhost:3000', 
     credentials:true,            //access-control-allow-credentials:true
