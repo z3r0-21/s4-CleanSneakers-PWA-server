@@ -1,8 +1,7 @@
-app.use(express.json({limit: '50mb'}));
-
 var express = require('express')
 var cors = require('cors')
 var app = express()
+app.use(express.json({limit: '50mb'}));
 
 var corsOptions = {
   origin: 'https://i454903.hera.fhict.nl',
