@@ -4,11 +4,11 @@ const app = express();
 
 app.use(express.json({limit: '50mb'}));
 
-const PORT = process.env.PORT || 5000;
+//const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
-    console.log("Listening on " + PORT)
-})
+// app.listen(PORT, () => {
+//     console.log("Listening on " + PORT)
+// })
 
 app.get("/", (res, req) =>{
     console.log("Rooot")
