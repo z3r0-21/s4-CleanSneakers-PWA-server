@@ -1,6 +1,19 @@
 var express = require('express');
 var app = express();
 app.use(express.json({limit: '50mb'}));
+const mysql = require('mysql')
+
+const con = mysql.createPool({
+  connectionLimit: 10,
+  host: 'us-cdbr-east-05.cleardb.net',
+  user: 'b7888acda4298a',
+  password: '3d4feb63',
+  database: 'heroku_2fc6a9042eb8155'
+})
+
+function getConnection() {
+  return con
+}
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -62,6 +75,21 @@ app.post('/api/searchImages', function (req, res, next) {
 app.post('/test', function (req, res, next) {
     res.send("yooo!")
 });
+
+app.post('/sneakers', function (req, res, next) {
+    const connection = getConnection()
+    const queryString = "SELECT * FROM sneakers"
+    connection.query(queryString, (err, rows, fields) => {
+      if (err) {
+        console.log(err)
+        res.sendStatus(500)
+        return
+      }
+      res.json(rows)
+    })
+});
+
+
 
 // app.post('/api/searchImages', cors(corsOptions), (req, res) => {
 //     searchForProduct(res, req.body.base64);
