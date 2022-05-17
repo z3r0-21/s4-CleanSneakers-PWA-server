@@ -76,7 +76,7 @@ app.get('/test', function (req, res, next) {
     res.send("yooo!")
 });
 
-app.post('/api/searchImages', function (req, res, next) {
+app.post('/addsneakers', function (req, res, next) {
 
   const name = req.body.name
   const material = req.body.material
