@@ -78,6 +78,7 @@ app.get('/test', function (req, res, next) {
 
 app.post('/addsneakers', function (req, res, next) {
 
+  console.log(req.body)
   const name = req.body.name
   const material = req.body.material
   const color = req.body.color
