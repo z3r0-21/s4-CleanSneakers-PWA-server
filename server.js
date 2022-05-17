@@ -76,6 +76,24 @@ app.get('/test', function (req, res, next) {
     res.send("yooo!")
 });
 
+app.post('/api/searchImages', function (req, res, next) {
+
+  const name = req.body.name
+  const material = req.body.material
+  const color = req.body.color
+  const rain = req.body.rain
+  const snow = req.body.snow
+
+  const queryString = "INSERT INTO sneakers(`sneaker_name`, `material`, `color`, `rain`, `snow`) VALUES(?, ?, ?, ?, ?)"
+  getConnection().query(queryString, [name, material, color, rain, snow], (err, results, fields) => {
+    if (err) {
+      res.sendStatus(500)
+      return
+    }
+    res.end()
+  })
+});
+
 app.get('/sneakers', function (req, res, next) {
     const connection = getConnection()
     const queryString = "SELECT * FROM sneakers"
