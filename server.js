@@ -89,17 +89,6 @@ app.post('/sneakers', function (req, res, next) {
     })
 });
 
-
-
-// app.post('/api/searchImages', cors(corsOptions), (req, res) => {
-//     searchForProduct(res, req.body.base64);
-// });
-
-// app.get("/test", cors(corsOptions), (req, res) =>{
-//     console.log("Rooot")
-//     res.send("yooo!")
-// })
-
 //PORT ENVIRONMENT VARIABLE
 const port = process.env.PORT || 8080;
 app.listen(port, () => console.log(`Listening on port ${port}..`));
