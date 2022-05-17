@@ -72,11 +72,11 @@ app.post('/api/searchImages', function (req, res, next) {
     searchForProduct(res, req.body.base64);
 });
 
-app.post('/test', function (req, res, next) {
+app.get('/test', function (req, res, next) {
     res.send("yooo!")
 });
 
-app.post('/sneakers', function (req, res, next) {
+app.get('/sneakers', function (req, res, next) {
     const connection = getConnection()
     const queryString = "SELECT * FROM sneakers"
     connection.query(queryString, (err, rows, fields) => {
