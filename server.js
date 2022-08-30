@@ -13,10 +13,10 @@ const imageAnnotatorClient = new vision.ImageAnnotatorClient({keyFilename: "./ke
 const mysql = require('mysql')
 const con = mysql.createPool({
   connectionLimit: 10,
-  host: 'us-cdbr-east-05.cleardb.net',
-  user: 'b7888acda4298a',
-  password: '3d4feb63',
-  database: 'heroku_2fc6a9042eb8155'
+  host: '',
+  user: '',
+  password: '',
+  database: ''
 })
 
 
